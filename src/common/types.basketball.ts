@@ -128,14 +128,17 @@ export type Awards<
 export type PlayerRatings = {
 	diq: number;
 	dnk: number;
+	dnkTendency: number;
 	drb: number;
 	endu: number;
 	fg: number;
+	fgTendency: number;
 	ft: number;
 	fuzz: number;
 	hgt: number;
 	injuryIndex?: number;
 	ins: number;
+	insTendency: number;
 	jmp: number;
 	locked?: boolean;
 	oiq: number;
@@ -149,6 +152,7 @@ export type PlayerRatings = {
 	skills: string[];
 	stre: number;
 	tp: number;
+	tpTendency: number;
 };
 
 export type RatingKey =
@@ -157,13 +161,17 @@ export type RatingKey =
 	| "drb"
 	| "endu"
 	| "fg"
+	| "fgTendency"
 	| "ft"
 	| "hgt"
 	| "ins"
+	| "insTendency"
 	| "jmp"
 	| "oiq"
 	| "pss"
 	| "reb"
 	| "spd"
 	| "stre"
-	| "tp";
+	| "tp"
+	| "tpTendency"
+	| "dnkTendency";

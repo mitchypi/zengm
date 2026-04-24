@@ -268,6 +268,8 @@ export const processTeam = async (
 
 		if (isSport("basketball")) {
 			p2.compositeRating.usage = p2.compositeRating.usage ** 1.9;
+			p2.compositeRating.usageTendency =
+				p2.compositeRating.usageTendency ** 1.9;
 		}
 		const seasonStatsKeys = bySport({
 			baseball: [

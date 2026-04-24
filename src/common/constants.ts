@@ -159,6 +159,11 @@ export const RATINGS = bySport<any[]>({
 	hockey: constantsHockey.RATINGS,
 });
 
+export const TENDENCY_RATINGS = bySport<any[]>({
+	basketball: constantsBasketball.TENDENCY_RATINGS,
+	default: [],
+});
+
 export const POSITION_COUNTS: {
 	[key: string]: number;
 } = bySport({

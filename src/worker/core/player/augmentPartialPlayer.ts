@@ -34,6 +34,13 @@ const augmentPartialPlayer = async (
 
 	const currentSeason = g.get("season");
 
+	const backfillBasketballTendencies = (r: any) => {
+		r.insTendency ??= r.ins;
+		r.dnkTendency ??= r.dnk;
+		r.fgTendency ??= r.fg;
+		r.tpTendency ??= r.tp;
+	};
+
 	if (
 		p.name !== undefined &&
 		(p.firstName === undefined || p.lastName === undefined)
@@ -266,6 +273,8 @@ const augmentPartialPlayer = async (
 					}
 				}
 
+				backfillBasketballTendencies(r);
+
 				r.ovr = ovr(r);
 				r.skills = skills(r);
 				r.pot = await monteCarloPot({
@@ -291,6 +300,10 @@ const augmentPartialPlayer = async (
 	}
 
 	for (const r of p.ratings) {
+		if (isSport("basketball")) {
+			backfillBasketballTendencies(r);
+		}
+
 		let appliedFuzz = false;
 		if (r.fuzz === undefined) {
 			r.fuzz = pg.ratings[0].fuzz;

@@ -10,6 +10,7 @@ import {
 	PHASE,
 	PLAYER,
 	RATINGS,
+	TENDENCY_RATINGS,
 	POSITIONS,
 	MOOD_TRAITS,
 	WEBSITE_ROOT,
@@ -244,7 +245,7 @@ const copyValidValues = (
 		const sourceRatings = source.ratings.at(-1)!;
 		const targetRatings = target.ratings.at(-1)!;
 		for (const rating of Object.keys(sourceRatings)) {
-			if (RATINGS.includes(rating)) {
+			if (RATINGS.includes(rating) || TENDENCY_RATINGS.includes(rating)) {
 				const val = helpers.bound(
 					Number.parseInt((sourceRatings as any)[rating]),
 					0,

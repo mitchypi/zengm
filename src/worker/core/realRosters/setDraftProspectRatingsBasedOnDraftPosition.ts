@@ -37,6 +37,13 @@ const getValue = (ratings: Record<RatingKey, number>, age: number) => {
 	return player.valueCombineOvrPot(ovr, pot, age);
 };
 
+const syncTendencies = (ratings: Record<RatingKey, number>) => {
+	ratings.insTendency = ratings.ins;
+	ratings.dnkTendency = ratings.dnk;
+	ratings.fgTendency = ratings.fg;
+	ratings.tpTendency = ratings.tp;
+};
+
 const setDraftProspectRatingsBasedOnDraftPosition = (
 	ratings: Record<RatingKey, number>,
 	age: number,
@@ -91,6 +98,7 @@ const setDraftProspectRatingsBasedOnDraftPosition = (
 				ratings[rating] = player.limitRating(ratings[rating] + direction);
 			}
 		}
+		syncTendencies(ratings);
 
 		value = getValue(ratings, age);
 		diff = targetValue - value;

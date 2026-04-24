@@ -22,7 +22,19 @@ const compositeRating = (
 			factor = component;
 		} else {
 			// @ts-expect-error
-			const rating: number | undefined = ratings[component];
+			let rating: number | undefined = ratings[component];
+
+			if (rating === undefined) {
+				if (component === "insTendency") {
+					rating = (ratings as any).ins;
+				} else if (component === "dnkTendency") {
+					rating = (ratings as any).dnk;
+				} else if (component === "fgTendency") {
+					rating = (ratings as any).fg;
+				} else if (component === "tpTendency") {
+					rating = (ratings as any).tp;
+				}
+			}
 
 			if (rating === undefined) {
 				throw new Error(`Undefined value for rating "${component}"`);

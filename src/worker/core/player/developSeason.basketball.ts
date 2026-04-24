@@ -147,10 +147,24 @@ const ratingsFormulas: Record<Exclude<RatingKey, "hgt">, RatingFormula> = {
 		},
 		changeLimits: () => [-3, 13],
 	},
+	dnkTendency: {
+		ageModifier: (age: number) => {
+			// Like shootingForumla, except for old players
+			if (age <= 27) {
+				return 0;
+			}
+
+			return 0.5;
+		},
+		changeLimits: () => [-3, 13],
+	},
 	ins: shootingFormula,
+	insTendency: shootingFormula,
 	ft: shootingFormula,
 	fg: shootingFormula,
+	fgTendency: shootingFormula,
 	tp: shootingFormula,
+	tpTendency: shootingFormula,
 	oiq: iqFormula,
 	diq: iqFormula,
 	drb: {

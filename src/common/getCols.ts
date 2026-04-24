@@ -819,11 +819,23 @@ const sportSpecificCols = bySport<{
 			sortType: "number",
 			title: "2Pt",
 		},
+		"rating:fgTendency": {
+			desc: "Mid Range Tendency",
+			sortSequence: ["desc", "asc"],
+			sortType: "number",
+			title: "2PtT",
+		},
 		"rating:tp": {
 			desc: "Three Pointers",
 			sortSequence: ["desc", "asc"],
 			sortType: "number",
 			title: "3Pt",
+		},
+		"rating:tpTendency": {
+			desc: "Three Pointer Tendency",
+			sortSequence: ["desc", "asc"],
+			sortType: "number",
+			title: "3PtT",
 		},
 		"rating:oiq": {
 			desc: "Offensive IQ",
@@ -837,6 +849,12 @@ const sportSpecificCols = bySport<{
 			sortType: "number",
 			title: "Dnk",
 		},
+		"rating:dnkTendency": {
+			desc: "Dunks/Layups Tendency",
+			sortSequence: ["desc", "asc"],
+			sortType: "number",
+			title: "DnkT",
+		},
 		"rating:drb": {
 			desc: "Dribbling",
 			sortSequence: ["desc", "asc"],
@@ -848,6 +866,12 @@ const sportSpecificCols = bySport<{
 			sortSequence: ["desc", "asc"],
 			sortType: "number",
 			title: "Ins",
+		},
+		"rating:insTendency": {
+			desc: "Inside Scoring Tendency",
+			sortSequence: ["desc", "asc"],
+			sortType: "number",
+			title: "InsT",
 		},
 		"rating:jmp": {
 			desc: "Jumping",

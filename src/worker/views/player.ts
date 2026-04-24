@@ -2,6 +2,7 @@ import {
 	PLAYER,
 	PLAYER_STATS_TABLES,
 	RATINGS,
+	TENDENCY_RATINGS,
 	PLAYER_SUMMARY,
 	DEFAULT_JERSEY,
 } from "../../common/constants.ts";
@@ -142,6 +143,7 @@ export const getPlayer = async (
 			"ovr",
 			"pot",
 			...RATINGS,
+			...TENDENCY_RATINGS,
 			"skills",
 			"pos",
 			"injuryIndex",
@@ -604,7 +606,7 @@ const updatePlayer = async (
 			events,
 			feats,
 			leaders,
-			ratings: RATINGS,
+			ratings: [...RATINGS, ...TENDENCY_RATINGS],
 		};
 	}
 };

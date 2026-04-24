@@ -72,8 +72,13 @@ type CompositeRating =
 	| "passing"
 	| "rebounding"
 	| "stealing"
+	| "tendencyAtRim"
+	| "tendencyLowPost"
+	| "tendencyMidRange"
+	| "tendencyThreePointer"
 	| "turnovers"
 	| "usage"
+	| "usageTendency"
 	| "jumpBall";
 type PlayerGameSim = {
 	id: number;
@@ -1597,7 +1602,7 @@ class GameSim extends GameSimBase {
 			}
 		}
 
-		const shooter = this.pickPlayer("usage", this.o, 1.25);
+		const shooter = this.pickPlayer("usageTendency", this.o, 1.25);
 
 		// Non-shooting foul?
 		if (
@@ -1788,21 +1793,26 @@ class GameSim extends GameSimBase {
 		putBack: boolean;
 	}) {
 		let shootingThreePointerScaled = p.compositeRating.shootingThreePointer;
+		let tendencyThreePointerScaled = p.compositeRating.tendencyThreePointer;
 
 		// Too many players shooting 3s at the high end - scale 0.55-1.0 to 0.55-0.85
 		if (shootingThreePointerScaled > 0.55) {
 			shootingThreePointerScaled =
 				0.55 + (shootingThreePointerScaled - 0.55) * (0.3 / 0.45);
 		}
+		if (tendencyThreePointerScaled > 0.55) {
+			tendencyThreePointerScaled =
+				0.55 + (tendencyThreePointerScaled - 0.55) * (0.3 / 0.45);
+		}
 
 		// Too many players shooting 3s at the low end - scale 0.35-0.45 to 0.1-0.45, and 0-0.35 to 0-0.1
-		let shootingThreePointerScaled2 = shootingThreePointerScaled;
-		if (shootingThreePointerScaled2 < 0.35) {
-			shootingThreePointerScaled2 =
-				0 + shootingThreePointerScaled2 * (0.1 / 0.35);
-		} else if (shootingThreePointerScaled2 < 0.45) {
-			shootingThreePointerScaled2 =
-				0.1 + (shootingThreePointerScaled2 - 0.35) * (0.35 / 0.1);
+		let tendencyThreePointerScaled2 = tendencyThreePointerScaled;
+		if (tendencyThreePointerScaled2 < 0.35) {
+			tendencyThreePointerScaled2 =
+				0 + tendencyThreePointerScaled2 * (0.1 / 0.35);
+		} else if (tendencyThreePointerScaled2 < 0.45) {
+			tendencyThreePointerScaled2 =
+				0.1 + (tendencyThreePointerScaled2 - 0.35) * (0.35 / 0.1);
 		}
 
 		// In some situations (4th quarter late game situations depending on score, and last second heaves in other quarters) players shoot more 3s
@@ -1852,7 +1862,7 @@ class GameSim extends GameSimBase {
 		} else if (
 			forceThreePointer ||
 			Math.random() <
-				0.67 * shootingThreePointerScaled2 * g.get("threePointTendencyFactor")
+				0.67 * tendencyThreePointerScaled2 * g.get("threePointTendencyFactor")
 		) {
 			// Three pointer
 			type = "threePointer";
@@ -1867,16 +1877,16 @@ class GameSim extends GameSimBase {
 			}
 			probMake *= g.get("threePointAccuracyFactor");
 		} else {
-			const r1 = 0.8 * Math.random() * p.compositeRating.shootingMidRange;
+			const r1 = 0.8 * Math.random() * p.compositeRating.tendencyMidRange;
 			const r2 =
 				Math.random() *
-				(p.compositeRating.shootingAtRim +
+				(p.compositeRating.tendencyAtRim +
 					this.synergyFactor *
 						(this.team[this.o].synergy.off - this.team[this.d].synergy.def)); // Synergy makes easy shots either more likely or less likely
 
 			const r3 =
 				Math.random() *
-				(p.compositeRating.shootingLowPost +
+				(p.compositeRating.tendencyLowPost +
 					this.synergyFactor *
 						(this.team[this.o].synergy.off - this.team[this.d].synergy.def)); // Synergy makes easy shots either more likely or less likely
 

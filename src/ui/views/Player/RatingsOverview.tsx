@@ -164,6 +164,36 @@ const RatingsOverview = ({
 				],
 			},
 			{
+				Tendencies: [
+					{
+						label: "Inside",
+						rating: "insTendency",
+					},
+					{
+						label: (
+							<>
+								<span className="d-md-none">Layups</span>
+								<span className="d-none d-md-inline">Dunks/Layups</span>
+							</>
+						),
+						rating: "dnkTendency",
+					},
+					{
+						label: "Mid Range",
+						rating: "fgTendency",
+					},
+					{
+						label: (
+							<>
+								<span className="d-md-none">3</span>
+								<span className="d-none d-md-inline">Three</span> Pointers
+							</>
+						),
+						rating: "tpTendency",
+					},
+				],
+			},
+			{
 				Skill: [
 					{
 						label: (

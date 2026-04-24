@@ -7,10 +7,14 @@ export type OnlyRatings = {
 	jmp: number;
 	endu: number;
 	ins: number;
+	insTendency: number;
 	dnk: number;
+	dnkTendency: number;
 	ft: number;
 	fg: number;
+	fgTendency: number;
 	tp: number;
+	tpTendency: number;
 	diq: number;
 	oiq: number;
 	drb: number;
@@ -30,10 +34,14 @@ const getOnlyRatings = (
 		jmp: ratings.jmp,
 		endu: ratings.endu,
 		ins: ratings.ins,
+		insTendency: ratings.ins,
 		dnk: ratings.dnk,
+		dnkTendency: ratings.dnk,
 		ft: ratings.ft,
 		fg: ratings.fg,
+		fgTendency: ratings.fg,
 		tp: ratings.tp,
+		tpTendency: ratings.tp,
 		diq: ratings.diq,
 		oiq: ratings.oiq,
 		drb: ratings.drb,

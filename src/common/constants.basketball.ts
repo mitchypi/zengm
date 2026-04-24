@@ -13,6 +13,19 @@ export const COMPOSITE_WEIGHTS: CompositeWeights<RatingKey> = {
 			cutoff: 0.61,
 		},
 	},
+	usageTendency: {
+		ratings: [
+			"insTendency",
+			"dnkTendency",
+			"fgTendency",
+			"tpTendency",
+			"spd",
+			"hgt",
+			"drb",
+			"oiq",
+		],
+		weights: [1.5, 1, 1, 1, 0.5, 0.5, 0.5, 0.5],
+	},
 	dribbling: {
 		ratings: ["drb", "spd"],
 		weights: [1, 1],
@@ -37,6 +50,10 @@ export const COMPOSITE_WEIGHTS: CompositeWeights<RatingKey> = {
 		ratings: ["hgt", "stre", "dnk", "oiq"],
 		weights: [2, 0.3, 0.3, 0.2],
 	},
+	tendencyAtRim: {
+		ratings: ["hgt", "stre", "dnkTendency", "oiq"],
+		weights: [2, 0.3, 0.3, 0.2],
+	},
 	shootingLowPost: {
 		ratings: ["hgt", "stre", "spd", "ins", "oiq"],
 		weights: [1, 0.6, 0.2, 1, 0.4],
@@ -45,8 +62,16 @@ export const COMPOSITE_WEIGHTS: CompositeWeights<RatingKey> = {
 			cutoff: 0.61,
 		},
 	},
+	tendencyLowPost: {
+		ratings: ["hgt", "stre", "spd", "insTendency", "oiq"],
+		weights: [1, 0.6, 0.2, 1, 0.4],
+	},
 	shootingMidRange: {
 		ratings: ["oiq", "fg", "stre"],
+		weights: [-0.5, 1, 0.2],
+	},
+	tendencyMidRange: {
+		ratings: ["oiq", "fgTendency", "stre"],
 		weights: [-0.5, 1, 0.2],
 	},
 	shootingThreePointer: {
@@ -56,6 +81,10 @@ export const COMPOSITE_WEIGHTS: CompositeWeights<RatingKey> = {
 			label: "3",
 			cutoff: 0.59,
 		},
+	},
+	tendencyThreePointer: {
+		ratings: ["oiq", "tpTendency"],
+		weights: [0.1, 1],
 	},
 	shootingFT: {
 		ratings: ["ft"],
@@ -531,6 +560,13 @@ export const RATINGS: RatingKey[] = [
 	"drb",
 	"pss",
 	"reb",
+];
+
+export const TENDENCY_RATINGS: RatingKey[] = [
+	"insTendency",
+	"dnkTendency",
+	"fgTendency",
+	"tpTendency",
 ];
 
 export const SIMPLE_AWARDS = [

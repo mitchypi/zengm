@@ -401,6 +401,24 @@ const processRatings = (
 	}: PlayersPlusOptionsRequired,
 	abbrevsCache: AbbrevsCache | undefined,
 ) => {
+	const getRating = (row: any, attr: string) => {
+		if (isSport("basketball")) {
+			if (attr === "insTendency") {
+				return row.insTendency ?? row.ins;
+			}
+			if (attr === "dnkTendency") {
+				return row.dnkTendency ?? row.dnk;
+			}
+			if (attr === "fgTendency") {
+				return row.fgTendency ?? row.fg;
+			}
+			if (attr === "tpTendency") {
+				return row.tpTendency ?? row.tp;
+			}
+		}
+
+		return row[attr];
+	};
 	let playerRatings = playerRatingsInput;
 
 	if (
@@ -521,9 +539,9 @@ const processRatings = (
 				attr !== "pos" &&
 				attr !== "injuryIndex"
 			) {
-				row[attr] = player.fuzzRating(pr[attr], pr.fuzz);
+				row[attr] = player.fuzzRating(getRating(pr, attr), pr.fuzz);
 			} else {
-				row[attr] = pr[attr];
+				row[attr] = getRating(pr, attr);
 			}
 		}
 
